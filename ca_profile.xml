@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<CommunityApplications>
+  <Profile>
+WebUI Links for Unraid: clicking WebUI on a container opens its Nginx Proxy Manager domain instead of http://IP:PORT, and a second menu entry still opens the direct IP:port address.
+
+For help, use the Unraid forum thread linked below. Bugs and feature requests can also go to GitHub issues.
+  </Profile>
+  <Icon>https://raw.githubusercontent.com/theovencook/unraid-webui-links/main/icon.svg</Icon>
+  <WebPage>https://github.com/theovencook/unraid-webui-links</WebPage>
+  <Forum>https://forums.unraid.net/topic/201057-plugin-webui-links-open-container-webuis-through-nginx-proxy-manager/</Forum>
+</CommunityApplications>

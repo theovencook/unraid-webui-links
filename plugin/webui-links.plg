@@ -2,12 +2,12 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "webui-links">
 <!ENTITY author    "theovencook">
-<!ENTITY version   "2026.10.26a">
+<!ENTITY version   "2026.10.26b">
 <!ENTITY md5       "a2dbfa3a849596d2a0db5b7ac4edc605">
 <!ENTITY launch    "Settings/WebUILinksSettings">
 <!ENTITY gitURL    "https://raw.githubusercontent.com/&author;/unraid-webui-links/main">
 <!ENTITY pluginURL "&gitURL;/plugin/&name;.plg">
-<!ENTITY supportURL "https://github.com/&author;/unraid-webui-links/issues">
+<!ENTITY supportURL "https://forums.unraid.net/topic/201057-plugin-webui-links-open-container-webuis-through-nginx-proxy-manager/">
 <!ENTITY plgPATH   "/boot/config/plugins/&name;">
 <!ENTITY plgNAME   "&name;-&version;-noarch-1">
 <!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
@@ -23,6 +23,9 @@
         min="6.12.0">
 
 <CHANGES>
+###2026.10.26b
+- Support link now points to the Unraid forum thread.
+
 ###2026.10.26a
 - Package named name-version-noarch-1 (Slackware convention) so upgrades replace it cleanly.
 

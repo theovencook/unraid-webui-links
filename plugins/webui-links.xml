@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Plugin>
+  <Name>WebUI Links</Name>
+  <PluginURL>https://raw.githubusercontent.com/theovencook/unraid-webui-links/main/plugin/webui-links.plg</PluginURL>
+  <PluginAuthor>theovencook</PluginAuthor>
+  <Support>https://forums.unraid.net/topic/201057-plugin-webui-links-open-container-webuis-through-nginx-proxy-manager/</Support>
+  <Project>https://github.com/theovencook/unraid-webui-links</Project>
+  <Icon>https://raw.githubusercontent.com/theovencook/unraid-webui-links/main/icon.svg</Icon>
+  <Category>Tools:Utilities Network:Proxy</Category>
+  <ExtraSearchTerms>nginx proxy manager npm webui reverse proxy domain docker menu link</ExtraSearchTerms>
+  <MinVer>6.12.0</MinVer>
+  <License>MIT</License>
+  <Overview>
+For people who reach their containers through Nginx Proxy Manager. Clicking WebUI on a container opens its proxy domain (for example https://immich.home.example.com) instead of http://IP:PORT. A second menu entry, "WebUI (IP:port)", still opens the direct address for when the proxy is down.
+
+The plugin reads Nginx Proxy Manager's proxy host files (read only) and matches each one to a container by the IP and port it forwards to, so new proxy hosts show up on their own. Your containers aren't edited or restarted, and uninstalling gives you the stock menu back. It works on the Docker page, including FolderView3 folders that use the standard menu, and on the Dashboard.
+
+Needs Nginx Proxy Manager running on the same server. Settings are under Settings, User Utilities, WebUI Links.
+  </Overview>
+</Plugin>
