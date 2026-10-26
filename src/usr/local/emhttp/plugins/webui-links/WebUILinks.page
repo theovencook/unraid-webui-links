@@ -1,0 +1,21 @@
+Menu="Buttons:199"
+Link="nav-user"
+---
+<?php
+/* webui-links: adds the proxy map and menu script to every page.
+ * The Docker page and the Dashboard both build container menus with addDockerContainerContext.
+ */
+$webuiLinksPlugin = 'webui-links';
+require_once "$docroot/plugins/$webuiLinksPlugin/include/links.php";
+$webuiLinksCfg = webui_links_cfg();
+if (($webuiLinksCfg['ENABLED'] ?? 'yes') === 'yes'):
+  $webuiLinksMap = webui_links_map($webuiLinksCfg['NPM_CONF_DIR'] ?? '');
+?>
+<script>
+var webuiLinks = {
+  map: <?=json_encode((object)$webuiLinksMap, JSON_UNESCAPED_SLASHES)?>,
+  directLabel: <?=json_encode($webuiLinksCfg['DIRECT_LABEL'] ?? 'WebUI ({address})')?>
+};
+</script>
+<script src="<?autov("/plugins/$webuiLinksPlugin/js/webui-links.js")?>"></script>
+<?endif;?>

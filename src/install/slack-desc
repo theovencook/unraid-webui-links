@@ -1,0 +1,12 @@
+           |-----handy-ruler------------------------------------------------------|
+webui-links: webui-links (Docker WebUI links through Nginx Proxy Manager)
+webui-links:
+webui-links: Makes each Docker container's WebUI menu entry open its Nginx Proxy
+webui-links: Manager domain, and adds a second entry that opens the direct
+webui-links: IP:port address.
+webui-links:
+webui-links:
+webui-links:
+webui-links:
+webui-links:
+webui-links:

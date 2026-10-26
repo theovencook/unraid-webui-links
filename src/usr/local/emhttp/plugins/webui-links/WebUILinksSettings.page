@@ -1,0 +1,58 @@
+Menu="Utilities"
+Title="WebUI Links"
+Icon="external-link"
+Tag="external-link"
+---
+<?php
+$webuiLinksPlugin = 'webui-links';
+require_once "$docroot/plugins/$webuiLinksPlugin/include/links.php";
+$webuiLinksCfg = webui_links_cfg();
+$webuiLinksMap = webui_links_map($webuiLinksCfg['NPM_CONF_DIR'] ?? '');
+?>
+<form markdown="1" method="POST" action="/update.php" target="progressFrame">
+<input type="hidden" name="#file" value="webui-links/webui-links.cfg">
+
+_(Enable)_:
+: <select name="ENABLED">
+  <?=mk_option($webuiLinksCfg['ENABLED'] ?? 'yes', 'yes', _('Yes'))?>
+  <?=mk_option($webuiLinksCfg['ENABLED'] ?? 'yes', 'no', _('No'))?>
+  </select>
+
+:webui_links_enable_plug:
+> When enabled, a container's **WebUI** menu entry opens its Nginx Proxy Manager domain,
+> and a second entry opens the direct IP:port address.
+:end
+
+_(NPM proxy host folder)_:
+: <input type="text" name="NPM_CONF_DIR" class="wide" value="<?=htmlspecialchars($webuiLinksCfg['NPM_CONF_DIR'] ?? '')?>">
+
+:webui_links_dir_plug:
+> Folder holding Nginx Proxy Manager's proxy host files (`data/nginx/proxy_host` inside its appdata).
+> The files are only read, never changed.
+:end
+
+_(Direct entry label)_:
+: <input type="text" name="DIRECT_LABEL" value="<?=htmlspecialchars($webuiLinksCfg['DIRECT_LABEL'] ?? '')?>">
+
+:webui_links_label_plug:
+> Text of the second menu entry. `{address}` is replaced with the container's IP:port.
+:end
+
+&nbsp;
+: <input type="submit" name="#apply" value="_(Apply)_"><input type="button" value="_(Done)_" onclick="done()">
+</form>
+
+<div class="title"><span class="left"><i class="fa fa-sitemap title"></i>_(Proxy hosts found)_</span></div>
+
+<?if (!$webuiLinksMap):?>
+<p>_(No proxy hosts found in that folder.)_</p>
+<?else:?>
+<table class="unraid tablesorter">
+<thead><tr><th>_(Direct address)_</th><th>_(WebUI opens)_</th></tr></thead>
+<tbody>
+<?foreach ($webuiLinksMap as $address => $url):?>
+<tr><td><?=htmlspecialchars($address)?></td><td><?=htmlspecialchars($url)?></td></tr>
+<?endforeach;?>
+</tbody>
+</table>
+<?endif;?>

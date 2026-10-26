@@ -1,0 +1,67 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+<!ENTITY name      "webui-links">
+<!ENTITY author    "theovencook">
+<!ENTITY version   "2026.10.26a">
+<!ENTITY md5       "a2dbfa3a849596d2a0db5b7ac4edc605">
+<!ENTITY launch    "Settings/WebUILinksSettings">
+<!ENTITY gitURL    "https://raw.githubusercontent.com/&author;/unraid-webui-links/main">
+<!ENTITY pluginURL "&gitURL;/plugin/&name;.plg">
+<!ENTITY supportURL "https://github.com/&author;/unraid-webui-links/issues">
+<!ENTITY plgPATH   "/boot/config/plugins/&name;">
+<!ENTITY plgNAME   "&name;-&version;-noarch-1">
+<!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
+]>
+
+<PLUGIN name="&name;"
+        author="&author;"
+        version="&version;"
+        launch="&launch;"
+        pluginURL="&pluginURL;"
+        support="&supportURL;"
+        icon="external-link"
+        min="6.12.0">
+
+<CHANGES>
+###2026.10.26a
+- Package named name-version-noarch-1 (Slackware convention) so upgrades replace it cleanly.
+
+###2026.10.26
+- First release: WebUI opens the Nginx Proxy Manager domain, plus a second entry for the direct IP:port.
+</CHANGES>
+
+<!-- Remove packages from older versions -->
+<FILE Run="/bin/bash">
+<INLINE>
+find &plgPATH; -maxdepth 1 -name '&name;-*.txz' ! -name '&plgNAME;.txz' -delete 2>/dev/null
+</INLINE>
+</FILE>
+
+<!-- Package: downloaded only when it is not already on the flash drive -->
+<FILE Name="&plgPATH;/&plgNAME;.txz" Run="upgradepkg --install-new">
+<URL>&gitURL;/archive/&plgNAME;.txz</URL>
+<MD5>&md5;</MD5>
+</FILE>
+
+<FILE Run="/bin/bash">
+<INLINE>
+echo ""
+echo "----------------------------------------------------"
+echo " &name; has been installed."
+echo " Version: &version;"
+echo "----------------------------------------------------"
+echo ""
+</INLINE>
+</FILE>
+
+<!-- Uninstall -->
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+removepkg &plgNAME;
+rm -rf &emhttp;
+rm -rf &plgPATH;
+echo "&name; has been removed."
+</INLINE>
+</FILE>
+
+</PLUGIN>
